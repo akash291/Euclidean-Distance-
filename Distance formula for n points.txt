@@ -1,0 +1,33 @@
+# Created By :- Akash Mehta
+# Date :- 26-4-2018
+distance_calculation <- function(co_ordinates,x,y,points){
+                            attach(co_ordinates)
+                            difference <- x-y
+                            print(difference)
+                            square <- apply(difference,2,function(X) X * X)
+                            print(square) 
+                            summation <- apply(square,2,sum)  
+                            dist <- sqrt(summation)
+                            return(dist)
+                        }
+                              
+point_input <- function(points){
+                 x <- matrix(,byrow=TRUE,nrow=points)
+                 y <- matrix(,byrow=TRUE,nrow=points)
+                 for (i in 1:points){
+                     print(paste("Enter Co-Ordinates for Point",i))
+                     x1 <- as.numeric(readline(prompt="Enter ordinate :"))
+                     y1 <- as.numeric(readline(prompt="Enter abscissa :"))
+                     x[i] <- x1
+                     y[i] <- y1
+                  }
+                  co_ordinates <- data.frame(x,y,stringdAsFactors=FALSE)
+                  print(co_ordinates)
+                  distance <- distance_calculation(co_ordinates,x,y,points)
+                  print(paste("The Distance is ",distance))
+               }
+
+points <- as.integer(readline(prompt="Enter number of points :"))
+point_input(points)
+
+
